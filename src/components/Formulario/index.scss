@@ -1,0 +1,42 @@
+.form{
+    margin: 0 auto;
+    padding: 20px 30px;
+    width: 1000px;
+    text-align: center;
+    background-color: #efefef;
+    border-radius: 30px;
+    .form-row{
+        margin: 20px;
+        display: flex;
+        input, textarea{
+            padding: 4px;
+            flex-grow: 1;
+            height: 40px;
+            font-size: 20px;
+        }
+        textarea{
+            height: 80px;
+        }
+        label{
+            width: 20%;
+            text-align: right;
+            margin-right: 40px;
+            font-size: 24px;
+        }
+
+    }
+    .button{
+        width: 100%;
+        justify-content: center;
+        button{
+            padding: 8px 12px;
+            font-size: 28px;
+            background-color: #3d3d3d;
+            color: #ff2c61;
+            &:hover{
+                scale: 1.1;
+            }
+        }
+    }
+
+}

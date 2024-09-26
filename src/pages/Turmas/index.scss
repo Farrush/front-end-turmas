@@ -1,0 +1,67 @@
+.turmas{
+    width: 100%;
+    padding: 0 10%;
+    margin-top: 50px;
+    text-align: center;
+    .barra-pesquisa{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        input{
+            padding: 4px;
+            font-size: 18px;
+        }
+        label{
+            font-size: 22px;
+        }
+        button{
+            padding: 10px;
+            border-radius: 16px;
+            font-size: 22px;
+            background-color: #cbcbcb;
+            color: #000000;
+        }
+    }
+    table{
+        width: 100%;
+        height: auto;
+        margin: 30px auto;
+        font-size: 24px;
+        gap: 6px;
+        td {
+            border: 1px solid black;
+            .descricao{
+                width: 110px;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+            }
+            a{
+                text-decoration: none;
+                &.alt{
+                    color: #00ffb8
+                }
+                &.del{
+                    color: #ff135a
+                }
+            }
+        }
+    }
+    .box-descricao{
+        background-color: #eee;
+        position: fixed;
+        top: 80px;
+        left: 10px;
+        width: 400px;
+        height: 100px;
+        color: #000;
+        padding: 10px;
+        border-radius: 6px;
+        h5{
+            font-size: 24px;
+        }
+    }
+}
