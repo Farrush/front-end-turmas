@@ -16,12 +16,12 @@ export default function Formulario(props){
         carregarTurma()
     }, [])
     useEffect(() => {
-        setNome(turma.nome)
-        setDescricao(turma.descricao)
-        setAnoLetivo(turma.anoLetivo)
-        setCapacidade(turma.capacidade)
-        setAtivo(turma.ativo)
-        setDataCriacao(turma.dataCriacao?.split('T')[0])
+        setNome(turma?.nome)
+        setDescricao(turma?.descricao)
+        setAnoLetivo(turma?.anoLetivo)
+        setCapacidade(turma?.capacidade)
+        setAtivo(turma?.ativo)
+        setDataCriacao(turma?.dataCriacao?.split('T')[0])
     }, [turma])
 
     async function carregarTurma(){
