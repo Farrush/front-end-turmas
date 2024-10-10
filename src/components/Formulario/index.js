@@ -1,14 +1,34 @@
 import './index.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 export default function Formulario(props){
 
     const [id, setId] = useState(props.id)
-    const [nome, setNome] = useState(props.nome)
-    const [descricao, setDescricao] = useState(props.descricao)
-    const [anoLetivo, setAnoLetivo] = useState(props.anoLetivo)
-    const [capacidade, setCapacidade] = useState(props.capacidade)
-    const [ativo, setAtivo] = useState(props.ativo)
-    const [dataCriacao, setDataCriacao] = useState(props.dataCriacao?.split('T')[0])
+    const [nome, setNome] = useState('')
+    const [descricao, setDescricao] = useState('')
+    const [anoLetivo, setAnoLetivo] = useState('')
+    const [capacidade, setCapacidade] = useState('')
+    const [ativo, setAtivo] = useState(false)
+    const [dataCriacao, setDataCriacao] = useState('')
+    const [turma, setTurma] = useState({})
+
+    useEffect(() => {
+        carregarTurma()
+    }, [])
+    useEffect(() => {
+        setNome(turma.nome)
+        setDescricao(turma.descricao)
+        setAnoLetivo(turma.anoLetivo)
+        setCapacidade(turma.capacidade)
+        setAtivo(turma.ativo)
+        setDataCriacao(turma.dataCriacao?.split('T')[0])
+    }, [turma])
+
+    async function carregarTurma(){
+        await axios.get('http://localhost:5040/turma/'+id)
+            .then(res => setTurma(res.data[0]))
+            .catch(err => alert(err.response.data.erro))   
+    }
 
     function enviarDados(){
         const dados = {id, nome, descricao: descricao, anoLetivo: Number(anoLetivo), capacidade: Number(capacidade), ativo, dataCriacao: dataCriacao}

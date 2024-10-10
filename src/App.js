@@ -15,7 +15,7 @@ function App() {
             <Route path='/' Component={Home}/>
             <Route path='/turmas' Component={Turmas}/>
             <Route path='/inserir' Component={AdicionarTurma}/>
-            <Route path="/alterar" Component={AtualizarTurma}/>
+            <Route path="/alterar/:id" Component={AtualizarTurma}/>
           </Routes>
         </Router>
     </div>

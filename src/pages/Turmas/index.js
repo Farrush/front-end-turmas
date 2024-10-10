@@ -69,7 +69,7 @@ export default function(){
                         <td>{turma.ativo?"Ativa":"Inativa"}</td>
                         <td>{new Date(turma.dataCriacao).toLocaleDateString()}</td>
                         <td>
-                            <Link className='alt' to={"/alterar"} state={{...turma}}>Alterar</Link>
+                            <Link className='alt' to={`/alterar/${turma.id}`} /*state={{...turma}}*/>Alterar</Link>
                         </td>
                         <td>
                             <a onClick={()=>deletarTurma(turma.id)} className='del' href='#'>Excluir</a>
