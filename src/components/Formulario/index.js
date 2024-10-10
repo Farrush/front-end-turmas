@@ -1,6 +1,7 @@
 import './index.scss'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+
 export default function Formulario(props){
 
     const [id, setId] = useState(props.id)
@@ -12,10 +13,9 @@ export default function Formulario(props){
     const [dataCriacao, setDataCriacao] = useState('')
     const [turma, setTurma] = useState({})
 
+    useEffect(() => {carregarTurma()}, [])
     useEffect(() => {
-        carregarTurma()
-    }, [])
-    useEffect(() => {
+        setId(turma?.id)
         setNome(turma?.nome)
         setDescricao(turma?.descricao)
         setAnoLetivo(turma?.anoLetivo)
@@ -25,7 +25,8 @@ export default function Formulario(props){
     }, [turma])
 
     async function carregarTurma(){
-        await axios.get('http://localhost:5040/turma/'+id)
+        if(id)
+            await axios.get('http://localhost:5040/turma/'+id, {headers: { "x-access-token": localStorage.getItem("TOKEN")}})
             .then(res => setTurma(res.data[0]))
             .catch(err => alert(err.response.data.erro))   
     }

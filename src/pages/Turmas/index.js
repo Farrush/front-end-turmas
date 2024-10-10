@@ -12,7 +12,7 @@ export default function(){
     }, [])
 
     async function buscarTurmas(){
-        await axios.get("http://localhost:5040/turma")
+        await axios.get("http://localhost:5040/turma?x-access-token="+localStorage.getItem("TOKEN"))
             .then(resp => {setTurmas(resp.data)})
             .catch(err => console.log(err.response.data.erro))
         
@@ -20,19 +20,19 @@ export default function(){
     async function buscarTurmasFiltro(){
         let url = ""
         if(ano.length > 0 && Number(ano) && curso.length === 0)
-            url = "http://localhost:5040/turma/busca?ano="+ano
+            url = "http://localhost:5040/turma/busca?x-access-token="+localStorage.getItem("TOKEN")+"&ano="+ano
         else if(curso.length > 0)
-            url = `http://localhost:5040/turma/${ano}/?curso=${curso}`
+            url = `http://localhost:5040/turma/${ano}/?curso=${curso}&x-access-token=${localStorage.getItem("TOKEN")}`
 
         if(url.length > 0)
             await axios.get(url)
-            .then(resp => setTurmas(resp.data))
+            .then(resp => {setTurmas(resp.data)})
             .catch(err => alert(err.response.data.erro))
 
     }
     async function deletarTurma(id){
-        await axios.delete("http://localhost:5040/turma/"+id)
-            .then(res => setTurmas(turmas.filter(t => t.id != id)))
+        await axios.delete("http://localhost:5040/turma/"+id, {headers: {"x-access-token": localStorage.getItem("TOKEN")}})
+            .then(res => setTurmas(turmas.filter(t => t.id !== id)))
             .catch(err => alert(err.response.data.erro))
     }
     return(
